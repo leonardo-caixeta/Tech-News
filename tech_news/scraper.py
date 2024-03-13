@@ -1,10 +1,10 @@
-# Requisito 1
+from parsel import Selector
 import requests
 import time
 
 
+# Requisito 1
 def fetch(url):
-    time.sleep(1)
     headers = {"user-agent": "Fake user-agent"}
     time.sleep(1)
     try:
@@ -19,8 +19,9 @@ def fetch(url):
 
 # Requisito 2
 def scrape_updates(html_content):
-    """Seu código deve vir aqui"""
-    raise NotImplementedError
+    selector = Selector(text=html_content)
+    news_urls = selector.xpath('//header/h2/a/@href').getall()  # NOQA
+    return news_urls
 
 
 # Requisito 3
