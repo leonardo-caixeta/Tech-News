@@ -26,8 +26,9 @@ def scrape_updates(html_content):
 
 # Requisito 3
 def scrape_next_page_link(html_content):
-    """Seu código deve vir aqui"""
-    raise NotImplementedError
+    selector = Selector(text=html_content)
+    next_page_url = selector.xpath('//*[@id="main"]/div/nav/div/a[3]/@href').get()  # NOQA
+    return next_page_url
 
 
 # Requisito 4
